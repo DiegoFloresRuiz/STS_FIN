@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tu Aplicación</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-white font-sans">
+  <nav class="bg-black p-4">
+    <ul class="flex justify-center space-x-4">
+      <li><a href="{{ url_for('inicio') }}" class="text-white hover:underline">Inicio</a></li>
+      <li><a href="{{ url_for('tkd') }}" class="text-white hover:underline">Taekwondo</a></li>
+      <li><a href="{{ url_for('nat') }}" class="text-white hover:underline">Natación</a></li>
+      <li><a href="{{ url_for('bl') }}" class="text-white hover:underline">Baloncesto</a></li>
+      <li><a href="{{ url_for('fut') }}" class="text-white hover:underline">Futbol</a></li>
+      <li><a href="{{ url_for('bol') }}" class="text-white hover:underline">Voleibol</a></li>
+      <li><a href="{{ url_for('box') }}" class="text-white hover:underline">Box</a></li>
+      <li><a href="{{ url_for('don') }}" class="text-white hover:underline">Donar</a></li>
+    </ul>
+  </nav>
+
+<div class="container mx-auto mt-8 p-6 bg-white shadow-md flex flex-col md:flex-row items-center">
+  <div class="image-container md:flex-1 text-center mb-4 md:mb-0">
+      <img src="{{ url_for('static', filename='logo.png') }}" alt="Imagen de deporte" class="max-w-full h-auto">
+  </div>
+  <div class="form-container md:flex-1">
+      <h1 class="text-2xl font-bold text-center mb-4">Donación</h1>
+
+      <form id="formulario" method="POST" enctype="multipart/form-data">
+          <select name="equipo" id="equipo" class="form-control w-full p-2 border border-gray-300 rounded mb-4" required>
+              <option value="" disabled selected>Selecciona el deporte al que pertenece el artículo</option>
+              <option value="equipo1">Taekwondo</option>
+              <option value="equipo2">Natación</option>
+              <option value="equipo3">Baloncesto</option>
+              <option value="equipo4">Futbol</option>
+              <option value="equipo5">Voleibol</option>
+              <option value="equipo6">Box</option>
+          </select>
+          <input type="text" name="nombre" id="Color" class="form-control w-full p-2 border border-gray-300 rounded mb-4" placeholder="Nombre del artículo" required>
+          <input type="number" name="Talla" id="Talla" class="form-control w-full p-2 border border-gray-300 rounded mb-4" placeholder="Talla" required>
+          <input type="text" name="Color" id="Color" class="form-control w-full p-2 border border-gray-300 rounded mb-4" placeholder="Color" required>
+          
+          <label for="imagen" class="custom-file-label inline-block cursor-pointer bg-gray-200 text-center py-2 px-4 rounded mb-4">Seleccionar imagen</label>
+          <input type="file" name="imagen" id="imagen" class="custom-file-input hidden" accept="image/*">
+          
+          <input type="text" name="Equipo" id="Equipo" class="form-control w-full p-2 border border-gray-300 rounded mb-4" placeholder="Nombre del equipo (opcional)">
+          
+          <div class="text-center">
+            <button type="submit" class="btn-submit w-40 p-2 bg-black text-white rounded hover:bg-gray-800">Donar</button>
+          </div>
+      </form>
+  </div>
+</div>
+
+<div class="footer bg-gray-800 text-white text-center py-2 mt-8">
+    <p>&copy; 2024 Susten Team Sports. Salud, Mente y Cuerpo.</p>
+</div>
+</body>
+</html>
+

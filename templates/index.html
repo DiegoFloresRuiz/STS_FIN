@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tu Aplicación</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+  .project {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  .project img {
+    border-radius: 5px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+  }
+  .project p {
+    margin-top: 10px;
+  }
+  .project:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  }
+  .project:hover img,
+  .project:hover p {
+    transform: scale(1.05);
+  }
+</style>
+</head>
+<body class="bg-white text-black">
+
+  <nav class="bg-black p-4">
+    <ul class="flex flex-wrap justify-center space-x-4">
+      <li><a href="{{ url_for('inicio') }}" class="text-white hover:underline">Inicio</a></li>
+      <li><a href="{{ url_for('tkd') }}" class="text-white hover:underline">Taekwondo</a></li>
+      <li><a href="{{ url_for('nat') }}" class="text-white hover:underline">Natación</a></li>
+      <li><a href="{{ url_for('bl') }}" class="text-white hover:underline">Baloncesto</a></li>
+      <li><a href="{{ url_for('fut') }}" class="text-white hover:underline">Futbol</a></li>
+      <li><a href="{{ url_for('bol') }}" class="text-white hover:underline">Voleibol</a></li>
+      <li><a href="{{ url_for('box_items') }}" class="text-white hover:underline">Box</a></li>
+    </ul>
+  </nav>
+
+  <div class="container mx-auto mt-4 px-4">
+    <div class="content bg-gray-100 p-5 rounded-lg shadow-lg">
+      <h1 class="text-center text-3xl font-bold text-black">Deportes que puedes seleccionar</h1>
+      <p class="text-justify my-4 text-black">
+        En esta sección, encontrarás una visión general de los proyectos deportivos actualmente en curso. Cada cuadrado representa 
+        un deporte distinto que estamos llevando a cabo en nuestro entorno deportivo. Estos proyectos abarcan una amplia gama de disciplinas, 
+        desde Taekwondo hasta Boxeo, incluyendo Natación, Baloncesto, Fútbol y Voleibol.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center my-8 mx-4">
+    <div class="project">
+      <img src="{{ url_for('static', filename='tkd.jpg') }}" alt="Taekwondo" class="w-48 h-48">
+      <p>Taekwondo</p>
+    </div>
+    <div class="project">
+      <img src="{{ url_for('static', filename='nt.webp') }}" alt="Natación" class="w-48 h-48">
+      <p>Natación</p>
+    </div>
+    <div class="project">
+      <img src="{{ url_for('static', filename='bl.avif') }}" alt="Baloncesto" class="w-48 h-48">
+      <p>Baloncesto</p>
+    </div>
+    <div class="project">
+      <img src="{{ url_for('static', filename='fl.webp') }}" alt="Fútbol" class="w-48 h-48">
+      <p>Fútbol</p>
+    </div>
+    <div class="project">
+      <img src="{{ url_for('static', filename='vl.webp') }}" alt="Voleibol" class="w-48 h-48">
+      <p>Voleibol</p>
+    </div>
+    <div class="project">
+      <img src="{{ url_for('static', filename='bo.jpg') }}" alt="Boxeo" class="w-48 h-48">
+      <p>Boxeo</p>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="donationModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white p-8 rounded-lg w-full max-w-lg">
+      <h2 class="text-2xl mb-4">Donar Artículo</h2>
+      <form id="donationForm" action="{{ url_for('donar_fut') }}" method="POST">
+        <div class="mb-4">
+          <label for="articleName" class="block mb-1">Nombre del Artículo</label>
+          <input type="text" id="articleName" name="articleName" class="w-full p-2 border border-gray-300 rounded" required>
+        </div>
+        <div class="mb-4">
+          <label for="size" class="block mb-1">Talla</label>
+          <input type="number" id="size" name="size" class="w-full p-2 border border-gray-300 rounded" required>
+        </div>
+        <div class="mb-4">
+          <label for="color" class="block mb-1">Color</label>
+          <input type="text" id="color" name="color" class="w-full p-2 border border-gray-300 rounded" required>
+        </div>
+        <div class="mb-4">
+          <label for="teamName" class="block mb-1">Nombre del Equipo (opcional)</label>
+          <input type="text" id="teamName" name="teamName" class="w-full p-2 border border-gray-300 rounded">
+        </div>
+        <center>
+          <button type="submit" class="px-4 py-2 bg-black text-white rounded-lg">Donar</button>
+          <button type="button" class="px-4 py-2 bg-gray-500 text-white ml-2 rounded-lg" onclick="closeModal()">Cancelar</button>
+        </center>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openModal() {
+      document.getElementById('donationModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('donationModal').classList.add('hidden');
+    }
+
+    document.getElementById('donationForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // Previene el envío del formulario
+
+      Swal.fire({
+        title: 'Confirmar Donación',
+        text: "¿Estás seguro de que deseas enviar esta donación?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: 'black',  // Cambiar color de confirmación aquí
+        cancelButtonColor: '#6B7280',  // Cambiar color de cancelación aquí
+        confirmButtonText: 'Sí, enviar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          e.target.submit(); // Envía el formulario si se confirma
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
