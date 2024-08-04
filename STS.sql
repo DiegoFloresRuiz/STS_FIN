@@ -1,0 +1,57 @@
+CREATE DATABASE STS;
+DROP DATABASE STS;
+
+USE STS;
+
+CREATE TABLE tkd (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(255) NOT NULL,
+    Talla INT NOT NULL,
+    Color VARCHAR(50) NOT NULL,
+    NombreEquipo VARCHAR(255)
+);
+
+CREATE TABLE natacion (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(255) NOT NULL,
+    Talla VARCHAR(50) NOT NULL,
+    Color VARCHAR(50) NOT NULL,
+    NombreEquipo VARCHAR(255)
+);
+
+CREATE TABLE baloncesto (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  Nombre VARCHAR(255) NOT NULL,
+  Talla INT NOT NULL,
+  Color VARCHAR(100) NOT NULL,
+  NombreEquipo VARCHAR(255)
+);
+
+CREATE TABLE futbol (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_articulo VARCHAR(255) NOT NULL,
+    talla INT NOT NULL,
+    color VARCHAR(50) NOT NULL,
+    nombre_equipo VARCHAR(255) DEFAULT NULL
+);
+
+CREATE TABLE voleibol (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_articulo VARCHAR(255) NOT NULL,
+    talla INT NOT NULL,
+    color VARCHAR(50) NOT NULL,
+    nombre_equipo VARCHAR(255) DEFAULT NULL
+);
+
+CREATE TABLE box (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_articulo VARCHAR(255) NOT NULL,
+    talla INT NOT NULL,
+    color VARCHAR(50) NOT NULL,
+    nombre_equipo VARCHAR(255) DEFAULT NULL
+);
+
+select * from box;
+DELETE FROM box;
+
+
